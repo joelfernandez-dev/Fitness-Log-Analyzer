@@ -1,8 +1,20 @@
 package com.fitnesslog;
 
 import java.util.Scanner;
+import java.util.Arrays;
 
 public class FitnessLogAnalyzer {
+	
+	
+	public static String displayListOrdered(String[] exercises) {
+		Arrays.sort(exercises,String.CASE_INSENSITIVE_ORDER);
+		
+		return Arrays.toString(exercises);
+			
+		}
+		
+		
+	
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -55,7 +67,7 @@ public class FitnessLogAnalyzer {
 					break;
 				
 				case 1:
-					System.out.println("-");
+					System.out.println(displayListOrdered(exercisesLst));
 					break;
 			
 				case 2:
