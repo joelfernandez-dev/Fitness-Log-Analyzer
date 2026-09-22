@@ -8,11 +8,110 @@ public class FitnessLogAnalyzer {
 	
 	public static String displayListOrdered(String[] exercises) {
 		Arrays.sort(exercises,String.CASE_INSENSITIVE_ORDER);
+		//.CASE_INSENSITIVE_ORDER builds the sort without taking into account if 
+		//its uppercase or lower case. By using this, the order goes something  like:
+		//A,a,b,B,c,C.....etc
 		
 		return Arrays.toString(exercises);
+		//Arrays.toString example of usage:
+//		String[] fruits = {"apple", "banana", "orange"};
+//		System.out.println(Arrays.toString(fruits));
+//		Output = [apple, banana, orange]
 			
 		}
+	
+	public static void displayFullExercises(String[] exercises) {
+////		String result = "";
+////		for (String exercise: exercises) {
+////			if (exercise.contains(" ")) {
+////				result += exercise + "\n"; 
+////			}
+////		}
+////		return result;
+//		StringBuilder result = new StringBuilder();
+//		boolean first = true;
+//		
+//		for (String exercise:exercises) {
+//			if (exercise.contains(" ")) {
+//				if (!first) { //if different than true, do: add a new line
+//					result.append("\n");
+//				}
+//				result.append(exercise);
+//				first = false; 
+//			//after we get the last one, it does go into the new line conditional because
+//			//there are no more words to loop through so that's why a new line is not
+//			//printed at the end.
+//			}
+//		}
+//		return result.toString();
+		//StringBuilder is an object, when we use .toString, we are making the object 
+		//into a string 
+		for (String exercise: exercises) {
+			if (exercise.contains(" ")) {
+				System.out.println(exercise);
+			}
+		}
+	}
+	
+	public static void displaySingleExercises(String[] exercises) {
+//		String result = "";
+//		for (String exercise: exercises) {
+//			if (!exercise.contains(" ")) {    ////THIS IS O(N^2) time complexity, we want O(N)
+//				result += exercise + "\n"; 
+//			}
+//		}
+//		return result;
 		
+//		StringBuilder result = new StringBuilder();
+//		boolean first = true;
+//		
+//		for (String exercise:exercises) {
+//			if (!exercise.contains(" ")) {
+//				if (!first) {
+//					result.append("\n");
+//				}
+//				
+//				result.append(exercise);
+//				first = false;
+//			}
+//		}
+//		return result.toString();
+		for (String exercise: exercises) {
+			if (!exercise.contains(" ")) {
+				System.out.println(exercise);
+			}
+		}
+		
+	}
+	
+	public static void displayEvenLengthExercises(String[] exercises) {
+		for (String exercise:exercises) {
+			String result = exercise.replace(" ", "");
+			if (result.length() % 2 == 0) {
+				System.out.println(exercise);
+			}
+		}
+	}
+	
+	public static void displayOddLengthExercises(String[] exercises) {
+		for (String exercise:exercises) {
+			String result = exercise.replace(" ", "");
+			if (result.length() % 2 == 1) {
+				System.out.println(exercise);
+			}
+		}
+	}
+	
+	public static void displayNotCapitalizedExercises(String[] exercises) {
+		for (String exercise:exercises) {
+			String[] newExercises = exercise.split(" ");
+			for (String newExercise: newExercises) {
+				if (!Character.isUpperCase(newExercise.charAt(0))) {
+					System.out.println(newExercise);
+				}
+			}
+		}
+	}
 		
 	
 
@@ -71,11 +170,11 @@ public class FitnessLogAnalyzer {
 					break;
 			
 				case 2:
-					System.out.println("-");
+					displayFullExercises(exercisesLst);
 					break;
 				
 				case 3:
-					System.out.println("-");
+					displaySingleExercises(exercisesLst);
 					break;
 				
 				case 4:
@@ -83,15 +182,15 @@ public class FitnessLogAnalyzer {
 					break;
 					
 				case 5:
-					System.out.println("-");
+					displayEvenLengthExercises(exercisesLst);
 					break;
 				
 				case 6:
-					System.out.println("-");
+					displayOddLengthExercises(exercisesLst);
 					break;
 
 				case 7:
-					System.out.println("-");
+					displayNotCapitalizedExercises(exercisesLst);
 					break;
 					
 				case 8:
