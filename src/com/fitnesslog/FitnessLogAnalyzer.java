@@ -105,6 +105,7 @@ public class FitnessLogAnalyzer {
 	public static void displayNotCapitalizedExercises(String[] exercises) {
 		for (String exercise:exercises) {
 			String[] newExercises = exercise.split(" ");
+			//SPLIT ON WHITESPACES
 			for (String newExercise: newExercises) {
 				if (!Character.isUpperCase(newExercise.charAt(0))) {
 					System.out.println(newExercise);
@@ -112,6 +113,48 @@ public class FitnessLogAnalyzer {
 			}
 		}
 	}
+	
+	public static void displayNameStatistics(String[] exercises) {
+		int nameCount = 0;
+		int letterCount = 0;
+		String wordNoSpaces = exercises[0].replace(" ", "");
+		int longest = wordNoSpaces.length();
+		int shortest = wordNoSpaces.length();
+		String longestSoFar = exercises[0];
+		String lowestSoFar = exercises[0];
+		
+		for (String exercise:exercises) {
+			nameCount++;
+			String exerciseNoSpaces = exercise.replace(" ","");
+			if (exerciseNoSpaces.length() > longest) {
+				longest = exerciseNoSpaces.length();
+				longestSoFar = exercise;
+			}
+			if (exerciseNoSpaces.length() < shortest) {
+				shortest = exerciseNoSpaces.length();
+				lowestSoFar = exercise;
+			}
+			//String result = exercise.replace(" ", ""); //replaces the spaces, so the words
+			//can be together: pullups,etc
+			for (int i = 0; i<exercise.length(); i++) {
+				char c = exercise.charAt(i);
+				
+				if (Character.isLetter(c)) {
+					letterCount++;
+				}
+			}
+		}
+		
+		
+		
+		System.out.println("Name Count: " + nameCount);
+		System.out.println("Letter Count Total: " + letterCount);
+		System.out.printf("Avg Name Length: %.2f", letterCount/(double)nameCount);
+		//you have to use printf when using .2f and cannot use "+"
+		System.out.println();
+		System.out.println("Shortest Name: " + lowestSoFar);
+		System.out.println("Longest Name: " + longestSoFar);
+}
 		
 	
 
@@ -122,6 +165,7 @@ public class FitnessLogAnalyzer {
 		String exercises = scnr.nextLine(); //this will read the input of the user 
 		
 		String[] exercisesLst = exercises.split(",");
+		//ITS LIKE SAYING: "SPLIT ON COMMAS"
 //		python example on how split works: 
 //		"hello world".split() # Output: ['hello', 'world'] SPLITTING BY WHITESPACE
 //		"apple,banana,cherry".split(",") # Output: ['apple', 'banana', 'cherry'] SPLITTING BY COMA
@@ -178,7 +222,7 @@ public class FitnessLogAnalyzer {
 					break;
 				
 				case 4:
-					System.out.println("-");
+					displayNameStatistics(exercisesLst);
 					break;
 					
 				case 5:
