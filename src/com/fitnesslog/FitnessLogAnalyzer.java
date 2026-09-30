@@ -144,16 +144,29 @@ public class FitnessLogAnalyzer {
 				}
 			}
 		}
+		double mean = letterCount/(double)nameCount;
+		double storedVal = 0;
 		
+		for (String exercise:exercises) {
+			String exerciseNoSpaces = exercise.replace(" ", "");
+			int exerciseNoSpacesL = exerciseNoSpaces.length();
+			double lengthDiff = Math.abs(mean - exerciseNoSpacesL);
+			double squaredDiff = lengthDiff * lengthDiff;
+			storedVal += squaredDiff;
+		}
+		double variance = storedVal / nameCount; 
+		double stdv = Math.sqrt(variance);
 		
 		
 		System.out.println("Name Count: " + nameCount);
 		System.out.println("Letter Count Total: " + letterCount);
-		System.out.printf("Avg Name Length: %.2f", letterCount/(double)nameCount);
+		System.out.printf("Avg Name Length: %.2f", mean);
 		//you have to use printf when using .2f and cannot use "+"
 		System.out.println();
 		System.out.println("Shortest Name: " + lowestSoFar);
 		System.out.println("Longest Name: " + longestSoFar);
+		System.out.printf("Population Standard Deviation: %.2f", stdv);
+		System.out.println();
 }
 		
 	
