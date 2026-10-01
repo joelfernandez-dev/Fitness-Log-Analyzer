@@ -114,6 +114,7 @@ public class FitnessLogAnalyzer {
 		}
 	}
 	
+	
 	public static void displayNameStatistics(String[] exercises) {
 		int nameCount = 0;
 		int letterCount = 0;
@@ -168,12 +169,34 @@ public class FitnessLogAnalyzer {
 		System.out.printf("Population Standard Deviation: %.2f", stdv);
 		System.out.println();
 }
-		
 	
-
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		Scanner scnr = new Scanner(System.in);
+	public static void displayMostFrequentExercise(String[] exercises) {
+		String mostFrequentSoFar = exercises[0];
+		int bestCountSoFar = 0;
+		
+		for (int i = 0; i<exercises.length;i++) {
+			int maxCount = 0;
+			
+			for (int j=0; j<exercises.length;j++) {
+				if (exercises[i].equalsIgnoreCase(exercises[j])) {
+					maxCount++;
+					
+				}
+			}
+			if (maxCount > bestCountSoFar) {
+				bestCountSoFar = maxCount;
+				mostFrequentSoFar = exercises[i];
+			}
+		}
+		if (bestCountSoFar == 1) {
+			System.out.println("No Most Frequent Exercise");
+		}
+		else {
+			System.out.println("Most Frequent Exercise: " + mostFrequentSoFar);
+		}
+	}
+	
+	public static String[] readExerciseList(Scanner scnr) {
 		System.out.println("Enter exercises separated by commas:");
 		String exercises = scnr.nextLine(); //this will read the input of the user 
 		
@@ -185,7 +208,7 @@ public class FitnessLogAnalyzer {
 		
 		for (int i=0; i<exercisesLst.length; i++) {
 //			exercisesLst.length gives out the length count of the items in the array
-			exercisesLst[i] = exercisesLst[i].trim();
+			exercisesLst[i] = exercisesLst[i].trim(); 
 //			.trim() cuts off blank space (spaces, tabs) that's hanging 
 //			off the front or back edges of a string
 //			"  hello  ".trim()   →  "hello"        (front and back spaces gone)
@@ -194,10 +217,22 @@ public class FitnessLogAnalyzer {
 //			"squats ".trim()     →  "squats"
 			//we use this because if you watch carefully, the user inputs Strings with spaces
 			//  squats, deadlift. The trim is used to cut off those spaces
-			
-			System.out.println(exercisesLst[i]);
-			
+//			
+//			System.out.println(exercisesLst[i]);
+//			
 		}
+		return exercisesLst;
+		
+	}
+	
+	
+		
+	
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner scnr = new Scanner(System.in);
+		String[] exercisesLst = readExerciseList(scnr); //passes the scanner established by us
 		
 		int choice;
 		
@@ -215,6 +250,7 @@ public class FitnessLogAnalyzer {
 			System.out.println("0) Quit Program");
 			
 			choice = scnr.nextInt();
+			scnr.nextLine();
 			
 			switch (choice) {
 			
@@ -251,11 +287,11 @@ public class FitnessLogAnalyzer {
 					break;
 					
 				case 8:
-					System.out.println("-");
+					displayMostFrequentExercise(exercisesLst);
 					break;
 					
 				case 9:
-					System.out.println("-");
+					exercisesLst = readExerciseList(scnr);
 					break;
 					
 				default:
