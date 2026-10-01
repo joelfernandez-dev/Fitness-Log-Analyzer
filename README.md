@@ -1,10 +1,10 @@
 # Fitness Log Analyzer
 
-A console-based Java application that reads in a list of exercises and lets you analyze it in several ways — sorting, filtering, statistics, and frequency counting.
+A console-based Java application that reads in a list of exercises and lets you analyze it in several ways: sorting, filtering, statistics, and frequency counting.
 
 ## Why I built this
 
-Built as an independent project to strengthen core Java fundamentals — arrays, Scanner input, method design, and String manipulation — through something of my own rather than a tutorial.
+Built as an independent project to strengthen core Java fundamentals — arrays, Scanner input, method design, and String manipulation. 
 
 ## How to run it
 
