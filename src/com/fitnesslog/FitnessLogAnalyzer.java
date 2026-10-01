@@ -42,7 +42,7 @@ public class FitnessLogAnalyzer {
 //			//there are no more words to loop through so that's why a new line is not
 //			//printed at the end.
 //			}
-//		}
+//		}}
 //		return result.toString();
 		//StringBuilder is an object, when we use .toString, we are making the object 
 		//into a string 
